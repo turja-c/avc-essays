@@ -4,33 +4,52 @@ from fpdf import FPDF
 from datetime import date
 
 
-currYear = date.today().year
 # Webpage connection
 # YEAR = '2003'
 # html = "https://avc.com/2003"
 
+currYear = date.today().year
+
 baseLink = "https://avc.com/"
+
+
+
 for k in range(2003,currYear,1):
     link = baseLink + str(k)
-    print(link)
+    url_lists = link.join([link])
+    print(url_lists)
+    # print(link)
 
-r=requests.get(link)
-c=r.content
-soup=BeautifulSoup(c,"html.parser")
-pdf = FPDF()
+# req = requests.get(link)
+# c = req.content
+# soup=BeautifulSoup(c,"html.parser")
 
-wegoList = soup.find_all("article")
+# ------------------------------------------------------------------------------
 
-def scrap_main(wegoList):
-    for items in wegoList:
-        title = items.find_all("a", {"class": "text-black",})
-        content = items.find_all("div", {"class": "ContentArea",})
-        # date = items.find_all("div", {"class": "text-content short-text",})
-        for i in zip(title,content):
-            print(i[0].get_text().strip(),('\n\n'),i[1].get_text().strip(),('\n\n'))
+
+# url_list = ['https://avc.com/2003','https://avc.com/2004']
+
+# for link in url_list:
+#     result = requests.get(link)
+#     src = result.content
+#     soup = BeautifulSoup(src, 'lxml')
+
+
+#     wegoList = soup.find_all("article")
+
+
+    # for items in wegoList:
+    #     title = items.find_all("a", {"class": "text-black",})
+    #     content = items.find_all("div", {"class": "ContentArea",})
+
+    #     for i in zip(title,content):
+    #         print(i[0].get_text().strip(),('\n\n'),i[1].get_text().strip(),('\n\n'))
             # pdf.final("final.pdf")
 
-scrap_main(wegoList)
+# scrap_main(wegoList)
+
+
+# ------------------------------------------------------------------------------
 
 # nextpage = soup.find_all("div", class_="Pagination-right")
 # for link in nextpage:
